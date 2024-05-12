@@ -26,7 +26,11 @@ export const ErrorHandler = ( callback:any ) => {
 				} else if (err.parent.code) {
 
 					const error = { name: "", message: "", field: null, value: null };
-					if (err.errors) error.field = err.errors[0].path.split('.')[1].split('_')[0];
+					if (err.errors) {
+						const currentErr = err.errors[0].path.split('.');
+						error.field = currentErr[ currentErr.length > 1 ? 1 : 0 ].split('_')[0];
+					}
+
 					if (err.errors) error.value = err.errors[0].value;
 					switch (err.parent.code) {
 

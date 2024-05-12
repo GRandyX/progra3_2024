@@ -32,3 +32,37 @@ CREATE TABLE IF NOT EXISTS `pytgrp3_progra`.`pytgrp5_person` (
   PRIMARY KEY (`person_id`),
   UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE)
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `pytgrp3_progra`.`pytgrp5_team`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pytgrp3_progra`.`pytgrp5_team` (
+  `team_id` INT NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(10) NOT NULL,
+  `name` VARCHAR(50) NOT NULL,
+  `active` TINYINT NULL DEFAULT 1,
+  `write_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`team_id`),
+  UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `pytgrp3_progra`.`pytgrp5_football_game`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pytgrp3_progra`.`pytgrp5_football_game` (
+  `fgame_id` INT NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(10) NOT NULL,
+  `location` VARCHAR(75) NOT NULL,
+  `local_team` INT NOT NULL,
+  `visit_team` INT NOT NULL,
+  `local_goal` INT NULL,
+  `visit_goal` INT NULL,
+  `first_goal` VARCHAR(50) NOT NULL,
+  `fgame_best_player` VARCHAR(50) NULL,
+  `active` TINYINT NULL DEFAULT 1,
+  `write_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`fgame_id`),
+  UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE)
+ENGINE = InnoDB;

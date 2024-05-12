@@ -7,6 +7,7 @@ class PersonModel extends Sequelize.Model {}
 	PersonModel.init(
 		{
 			person_id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+			code: Sequelize.CHAR(10),
 			first_name: { type: Sequelize.CHAR(50), unique: true, allowNull: false,
 				validate: {
 					notNull: { msg: msgHelper.ErRequiredField },

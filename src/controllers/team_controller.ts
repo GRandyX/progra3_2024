@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import Helper, { msgHelper } from '../helpers/helper';
-import PersonService from "../services/person_service";
+import TeamService from "../services/team_service";
 
 const helper = new Helper();
-const personSrvc = new PersonService();
+const teamSrvc = new TeamService();
 
-class PersonController {
+class TeamController {
 
 	public async getRecords(req: Request, res: Response) {
-		let record_obj:any = await personSrvc.getAllPersons();
+		let record_obj:any = await teamSrvc.getAllTeams();
 
 		return res.status(200).json({
 			name: record_obj.length === 0 ? "InNoRecords" : "InReadOk",
@@ -18,7 +18,7 @@ class PersonController {
 	}
 
 	public async getOneRecord(req: Request, res: Response) {
-		let record_obj = await personSrvc.getPersonById(parseInt(req.params['id']));
+		let record_obj = await teamSrvc.getTeamById(parseInt(req.params['id']));
 
 		return res.status(200).json({
 			name: !record_obj ? "InNoRecord" : "InReadOk",
@@ -29,14 +29,14 @@ class PersonController {
 
 	public async newRecord(req: Request, res: Response) {
 		const fields = req.body;
-		let record_obj = await personSrvc.createPerson( fields );
+		let record_obj = await teamSrvc.createTeam( fields );
 
 		return res.status(201).json({ name: "InCreateOk", message: msgHelper.InCreateOk, data: record_obj });
 	}
 
 	public async updateRecord(req: Request, res: Response) {
 		var fields = req.body;
-		let record_obj = await personSrvc.updatePerson( fields, parseInt(req.params['id']));
+		let record_obj = await teamSrvc.updateTeam( fields, parseInt(req.params['id']));
 
 		if (!record_obj)
 			return res.status(200).json({ name: "InNoRecord", message: msgHelper.InNoRecord, data: record_obj });
@@ -44,7 +44,7 @@ class PersonController {
 	}
 
 	public async deleteRecord(req: Request, res: Response) {
-		let deleted_register = await personSrvc.deletePerson(parseInt(req.params['id']));
+		let deleted_register = await teamSrvc.deleteTeam(parseInt(req.params['id']));
 
 		if (!deleted_register)
 			return res.status(200).json({ errors: [{ name: "InNoRecord", message: msgHelper.InNoRecord, field: null, value: null }] });
@@ -53,4 +53,4 @@ class PersonController {
 
 };
 
-export default PersonController;
+export default TeamController;
