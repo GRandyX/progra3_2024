@@ -1,5 +1,5 @@
 class HashTable {
-    
+
     constructor(size) {
         this.size = size;
         this.table = new Array(size).fill([]);
@@ -23,10 +23,10 @@ class HashTable {
         this.table[index].push({ key, value });
     }
 
-    search(key) {
-        const index = this._hash(key);
-        for (const item of this.table[index]) {
-            if (item.key === key) {
+    search( key ) {
+        const index = this._hash( key );
+        for ( const item of this.table[index] ) {
+            if ( item.key === key ) {
                 return item.value;
             }
         }

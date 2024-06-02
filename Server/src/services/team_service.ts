@@ -4,7 +4,7 @@ import Helper from '../helpers/helper';
 export default class TeamService {
 
 	private helper = new Helper();
-	private defaultGetAttributes:any = ['team_id', 'first_name', 'last_name', 'mail', 'active'];
+	private defaultGetAttributes:any = ['team_id', 'code', 'name', 'players', 'active'];
 
 	async getAllTeams( all_fields:boolean=false ) {
 		if (all_fields) return await TeamModel.findAll();

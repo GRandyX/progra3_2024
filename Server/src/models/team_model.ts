@@ -14,6 +14,12 @@ class TeamModel extends Sequelize.Model {}
 					notEmpty: { msg: msgHelper.ErRequiredField }
 				}
 			},
+			players: { type: Sequelize.CHAR(100), allowNull: false,
+				validate: {
+					notNull: { msg: msgHelper.ErRequiredField },
+					notEmpty: { msg: msgHelper.ErRequiredField }
+				}
+			},
 			active: { type: Sequelize.BOOLEAN, defaultValue: true },
 			write_at: Sequelize.DATE
 		},
