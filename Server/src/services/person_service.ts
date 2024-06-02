@@ -4,7 +4,7 @@ import Helper from '../helpers/helper';
 export default class PersonService {
 
 	private helper = new Helper();
-	private defaultGetAttributes:any = ['person_id', 'first_name', 'last_name', 'mail', 'active'];
+	private defaultGetAttributes:any = ['person_id', 'code', 'first_name', 'last_name', 'mail', 'active'];
 
 	async getAllPersons( all_fields:boolean=false ) {
 		if (all_fields) return await PersonModel.findAll();

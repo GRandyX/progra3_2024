@@ -19,8 +19,14 @@ class HashTable {
     }
 
     insert(key, value) {
-        const index = this._hash(key);
-        this.table[index].push({ key, value });
+        let index = this._hash(key);
+        if ( index <= 0 ) index = index * (-1);
+
+        if ( this.table[ index ].length > 0 ) {
+            this.table[ index ].push( key );
+        } else {
+            this.table[index] = [ key ];
+        }
     }
 
     search( key ) {
