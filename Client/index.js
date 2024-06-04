@@ -16,7 +16,7 @@ async function main() {
 
         for ( let idx = 0; idx < players.length; idx++ ) {
             let player = players[ idx ];
-            HT_Players.insert( player.code, player );
+            HT_Players.insert( player.code, player ); // getCodeASCI( player.code )
         }
 
     }
@@ -28,17 +28,35 @@ async function main() {
 
         for ( let idx = 0; idx < teams.length; idx++ ) {
             let player = teams[ idx ];
-            HT_Teams.insert( player.code, player );
+            HT_Teams.insert( player.code, player ); // getCodeASCI( player.code )
         }
 
     }
-    /*console.log( HT_Players );
-    console.log( HT_Teams );*/
+
+
+    let bstPlayer = new _BinarySearchTree();
+    for ( let idx = 0; idx < HT_Players.table.length; idx++ ) {
+        let currTH = HT_Players.table[ idx ];
+        bstPlayer.insert( currTH.key, currTH.value );
+    }
+
+    let bstTeam = new _BinarySearchTree();
+    for ( let idx = 0; idx < HT_Players.table.length; idx++ ) {
+        let currTH = HT_Players.table[ idx ];
+        bstTeam.insert( currTH.key, currTH.value );
+    }
+
+
+
+
+    console.log( HT_Players );
+    console.log( HT_Teams );
+
+    console.log( HT_Players.search("cdpn012") ); // cd
 
     /*const hashTable = new _HashTable(10);
     hashTable.insert("Equipo A", { "Goles": 2, "Mejor jugador": "Jugador X", "Minuto del primer gol": 15 });
     hashTable.insert("Equipo B", { "Goles": 1, "Mejor jugador": "Jugador Y", "Minuto del primer gol": 30 });
-    console.log( hashTable.search("Equipo A") );
     console.log( hashTable.search("Equipo B") );
 
 
@@ -55,13 +73,27 @@ async function main() {
 }
 
 
+/**
+ * @param {string} ejem 
+ */
+function getCodeASCI( ejem ) {
+    let code = '';
+
+    for ( let idx = 0; idx < ejem.length; idx++ ) {
+        code += ejem[ idx ].charCodeAt();
+    }
+
+    return code;
+}
+
+
 async function callAppRest( endPoint ) {
 
     return new Promise( function(resolve, reject) {
 
         const http = require('http');
         const options = {
-            hostname: 'localhost',
+            hostname: '127.0.0.1',
             port: 4000,
             path: '/restapi'+ endPoint,
             method: 'GET',

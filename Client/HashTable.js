@@ -23,9 +23,9 @@ class HashTable {
         if ( index <= 0 ) index = index * (-1);
 
         if ( this.table[ index ].length > 0 ) {
-            this.table[ index ].push( key );
+            this.table[ index ].push( { key, value } );
         } else {
-            this.table[index] = [ key ];
+            this.table[index] = [ { key, value } ];
         }
     }
 
